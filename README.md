@@ -25,3 +25,21 @@ Via command line, navigate to the project, then run the following commands:
 **NOTE**: Please take in consideration that depending on your local setup the files created by the script through the
 docker might need to have the ownership of the files fix.
 
+## Code Improvements
+
+Here are some quick notes I too for improving the project
+
+- Add more unit tests to parts that were not tested
+- Extract methods to specialized classes
+    - Create class: PageFetcher (for fetching the data)
+    - Create class: PageSaver (for saving the pages and assets)
+    - Create class: PageParser (for parsing the pages and collecting the metadata)
+    - Create a class for UI (for the puts etc~)
+    - Extract ProgressBar
+- Create E2E tests
+- Improve handling the errors
+- Improve performance
+    - Add parallel requests to download the assets
+- Add feature to download the first level child pages with it's assets
+- Add file checking to avoid downloading the same file twice
+    - Adding a flag to fully re-download the page or not
