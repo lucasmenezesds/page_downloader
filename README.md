@@ -8,6 +8,8 @@ Via command line, navigate to the project, then run the following commands:
 
 1. Build the container by running
     - $`bin/app/build`
+    - **NOTE**: This commands and the following will run Docker's commands so it might ask you to run in admin
+      mode.
 2. Start the container by running
     - $`bin/app/start`
     - **NOTE**: It's important to let you know that it's going to set a volume in your current directory
@@ -22,3 +24,4 @@ Via command line, navigate to the project, then run the following commands:
 
 **NOTE**: Please take in consideration that depending on your local setup the files created by the script through the
 docker might need to have the ownership of the files fix.
+
