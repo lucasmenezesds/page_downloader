@@ -123,6 +123,7 @@ DEPENDENCIES
   rspec (~> 3.12)
   rubocop (~> 1.59)
   rubocop-rspec (~> 2.25)
+  ruby-progressbar (~> 1.11)
   simplecov (~> 0.22.0)
   webmock (~> 3.19, >= 3.19.1)
 
