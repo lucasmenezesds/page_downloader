@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'faraday', '~> 2.7', '>= 2.7.12'
 gem 'nokogiri', '~> 1.15', '>= 1.15.5'
 gem 'rake', '~> 13.1'
+gem 'ruby-progressbar', '~> 1.11'
 
 group :test, :development do
   gem 'guard', '~> 2.18', require: false

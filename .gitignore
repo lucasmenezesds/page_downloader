@@ -15,3 +15,5 @@
 .rspec_status
 
 *.html
+
+pages_assets/
