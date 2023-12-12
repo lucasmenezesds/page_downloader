@@ -1,0 +1,70 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+require 'optparse'
+require_relative '../lib/page_downloader'
+
+metadata_flag = false
+website_url = nil
+
+options = OptionParser.new do |opts|
+  opts.banner = 'PageDownloader: a simple version of wget for downloading websites pages'
+  opts.define_head('Usage: exe/page_downloader [options] <URLs> ')
+  opts.separator('')
+  opts.separator('Examples:')
+  opts.separator('  exe/page_downloader https://www.google.com')
+  opts.separator('  exe/page_downloader https://www.google.com https://autify.com')
+  opts.separator('  exe/page_downloader --metadata https://www.google.com')
+  opts.separator('')
+  opts.separator('Options:')
+
+  opts.on('--metadata <URL>', 'It returns the metadata info from the downloaded website which was specified') do |url|
+    metadata_flag = true
+    website_url = url
+  end
+
+  opts.on_tail('-?', '--help', 'Show this message') do
+    puts opts
+    exit
+  end
+
+  opts.on_tail('-v', '--version', 'Show version') do
+    puts "# PageDownloader (#{PageDownloader::VERSION})"
+    exit
+  end
+end
+
+options.parse!
+
+website_url ||= ARGV
+
+if website_url.empty?
+  puts options
+  exit 1
+end
+
+def download_url(current_url, metadata_flag)
+  puts "  Starting to Download: #{current_url}"
+  page_downloader = PageDownloader::Downloader.new(current_url, metadata_flag:)
+  page_downloader.download_page
+  puts '  Done!'
+  page_downloader.print_metadata if metadata_flag
+  puts ''
+end
+
+begin
+  if website_url.is_a?(Array)
+    website_url.each do |current_url|
+      download_url(current_url, metadata_flag)
+    end
+    return
+  end
+
+  download_url(website_url, metadata_flag)
+rescue StandardError => e
+  puts ''
+  puts '# Error:'
+  puts "## #{e.message}"
+  puts ''
+end
