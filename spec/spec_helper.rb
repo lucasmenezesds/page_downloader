@@ -5,11 +5,15 @@ require 'simplecov'
 SimpleCov.start do
   track_files 'lib/**/*.rb'
   add_group 'Lib', 'lib/'
+  add_group 'PageDowloader', 'lib/page_downloader'
 
   add_filter 'spec/'
 
   enable_coverage :branch
 end
+
+require_relative '../lib/page_downloader'
+require 'webmock/rspec'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
